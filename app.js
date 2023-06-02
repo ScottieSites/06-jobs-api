@@ -13,11 +13,11 @@ const app = express();
 
 //connect DB
 const connectDB = require('./db/connect')
-const authenticateUser = require('./middleware/authentication')
+ const authenticateUser = require('./middleware/authentication')
 
 //routers
 const authRouter = require('./routes/auth');
-const accountsRouter = require('./routes/jobs')
+const accountsRouter = require('./routes/accounts')
 
 
 // error handler
@@ -30,6 +30,7 @@ app.use(rateLimiter({
   windowMs: 15 * 60 * 1000,
   max: 100
 }))
+app.use(rateLimiter)
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
@@ -38,10 +39,10 @@ app.use(cors())
 
 // routes
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/jobs', authenticateUser, accountsRouter);
+app.use('/api/v1/accounts', authenticateUser, accountsRouter);
 
-app.use(notFoundMiddleware);
-app.use(errorHandlerMiddleware);
+ app.use(notFoundMiddleware);
+ app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
 
