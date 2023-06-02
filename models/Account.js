@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+ const mongoose = require('mongoose')
 
 const designFirmSchema = new mongoose.Schema({
     company:{
@@ -9,9 +9,9 @@ const designFirmSchema = new mongoose.Schema({
     },
     accountNumber:{
         type:Number,
-        required:[true, 'Please provide account number'],
+        required:[true, 'Please provide Salesforce case number'],
         trim:true,
-        maxLength:8
+        maxLength:100
     },
     createdBy:{
         type:mongoose.Types.ObjectId,
@@ -20,4 +20,4 @@ const designFirmSchema = new mongoose.Schema({
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model('Job', designFirmSchema)
+ module.exports = mongoose.model('Account', designFirmSchema)
