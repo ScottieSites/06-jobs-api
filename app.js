@@ -30,7 +30,7 @@ app.use(rateLimiter({
   windowMs: 15 * 60 * 1000,
   max: 100
 }))
-app.use(rateLimiter)
+
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
